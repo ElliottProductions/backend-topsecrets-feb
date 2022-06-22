@@ -31,9 +31,17 @@ describe('backend-express-template routes', () => {
   });
   it('create new user using mockDuck', async () => {
     const response = await request(app).post('/api/v1/users').send(mockDuck);
-    const { email } = mockDuck;
 
     expect(response.body.email).toBe('test@example.com');
+  });
+  it.only('LOGIN user mockDuck', async () => {
+    await request(app).post('/api/v1/users').send(mockDuck);
+    const response = await request(app)
+      .post('/api/v1/users/sessions')
+      .send({ email: 'test@example.com',
+        password: '12345' });
+
+    expect(response.status).toEqual(200);
   });
   afterAll(() => {
     pool.end();
