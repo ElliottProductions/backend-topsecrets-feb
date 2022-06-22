@@ -34,12 +34,22 @@ describe('backend-express-template routes', () => {
 
     expect(response.body.email).toBe('test@example.com');
   });
-  it.only('LOGIN user mockDuck', async () => {
+  it('LOGIN user mockDuck', async () => {
     await request(app).post('/api/v1/users').send(mockDuck);
     const response = await request(app)
       .post('/api/v1/users/sessions')
       .send({ email: 'test@example.com',
         password: '12345' });
+
+    expect(response.status).toEqual(200);
+  });
+  it.only('LOGOUT user mockDuck', async () => {
+    await request(app).post('/api/v1/users').send(mockDuck);
+    await request(app)
+      .post('/api/v1/users/sessions')
+      .send({ email: 'test@example.com',
+        password: '12345' });
+    const response = await request(app).delete('/api/v1/users/sessions');
 
     expect(response.status).toEqual(200);
   });
