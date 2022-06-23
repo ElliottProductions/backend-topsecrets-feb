@@ -16,3 +16,5 @@ CREATE TABLE secrets (
   created_at TIMESTAMP
 );
 
+INSERT INTO secrets (title, description) VALUES
+('PLEURODELES WALTL', 'Spanish Ribbed Newt');
