@@ -41,7 +41,7 @@ describe('backend-express-template routes', () => {
   
     const res = await agent 
       .get('/api/v1/secrets');
-    expect(res.status).toEqual(200);
+    expect(res.status).toBe(200);
   });
   it('create new user using mockDuck', async () => {
     const [agent] = await registerAndLogin();

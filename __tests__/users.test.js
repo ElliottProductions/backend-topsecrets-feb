@@ -27,7 +27,7 @@ describe('backend-express-template routes', () => {
       .send({ email: 'test@example.com',
         password: '12345' });
 
-    expect(response.status).toEqual(200);
+    expect(response.status).toBe(200);
   });
   it('LOGOUT user mockDuck', async () => {
     await request(app).post('/api/v1/users').send(mockDuck);
@@ -37,7 +37,7 @@ describe('backend-express-template routes', () => {
         password: '12345' });
     const response = await request(app).delete('/api/v1/users/sessions');
 
-    expect(response.status).toEqual(200);
+    expect(response.status).toBe(200);
   });
   afterAll(() => {
     pool.end();
